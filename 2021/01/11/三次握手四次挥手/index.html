@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <title>
+        了解cookies和token的优异 |
+        
+        Keep
+    </title>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":true,"expand_all":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","img_position":"left","left_side_width":"260px","content_max_width":"900px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."}},"local_search":{"enable":false,"trigger":"auto","unescape":false,"preload":false},"version":"3.0.4"};
+    KEEP.language = {"search":"Search...","prev":"Prev","next":"Next","prev_posts":"Prev posts","next_posts":"Next posts","page":"Page %d","recent_posts":"Recent Posts","share":"Share","powered_by":"Powered by %s","theme":"Theme","rss_feed":"RSS Feed","category":"Category","categories":"Categories","tag":"Tag","tags":"Tags","tagcloud":"Tag Cloud","comment":"Comment","home":"Home","archive":"Archive","archives":"Archives","about":"About","site_uv":"Visitor Count","site_pv":"Totalview","links":"Links","link":"Link","top":"TOP","read_more":"Read more","wordcount":"Words","min2read":"Mins","changelog":"Changelog","copyright":{"author":"Post author","title":"Post title","link":"Post link","create_time":"Create time","license_title":"Copyright Notice","license_content":"All articles in this blog are licensed under %s unless stating additionally."},"ago":{"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days age","week":"%s weeks age","month":"%s months age","year":"%s years age"}};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+<div class="page-container">
+
+    
+
+    <header class="page-header">
+        <div class="header-progress"></div>
+    </header>
+
+    <main class="page-main">
+
+        <div class="page-main-content">
+
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
+
+    <div class="header-content">
+        <a class="logo-title" href="/">
+            Keep
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        HOME
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        ARCHIVES
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">了解cookies和token的优异</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span>Keep team</span>
+                        <span class="level">Lv1</span>
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-calendar"></i> 2021-01-11 21:29:41
+    </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="了解-cookies-和-token-的优异"><a href="#了解-cookies-和-token-的优异" class="headerlink" title="了解 cookies 和 token 的优异"></a>了解 cookies 和 token 的优异</h1><h2 id="cookie-是什么"><a href="#cookie-是什么" class="headerlink" title="cookie 是什么"></a>cookie 是什么</h2><p>cookie 翻译过来是“饼干，甜品”的意思，cookie 在网络应用中到处存在，当我们浏览之前访问过的网站，网页中可能会显示：你好，王三少，这就会让我们感觉很亲切，像吃了一块很甜的饼干一样。</p>
+<p>由于 http 是无状态的协议，一旦客户端和服务器的数据交换完毕，就会断开连接，再次请求，会重新连接，这就说明服务器单从网络连接上是没有办法知道用户身份的。怎么办呢？那就给每次新的用户请求时，给它颁发一个身份证（独一无二）吧，下次访问，必须带上身份证，这样服务器就会知道是谁来访问了，针对不同用户，做出不同的响应。，这就是 Cookie 的原理。</p>
+<p>其实 cookie 是一个很小的文本文件，是浏览器储存在用户的机器上的。Cookie 是纯文本，没有可执行代码。储存一些服务器需要的信息，每次请求站点，会发送相应的 cookie，这些 cookie 可以用来辨别用户身份信息等作用。</p>
+<p>cookie 可以包含任意的信息，不仅仅是 id，客户端会记录服务器返回来的 Set-Cookie 首部中的 cookie 内容。并将 cookie 存储在浏览器的 cookie 数据库中，当用户访问同一站点时，浏览器就会挑选当时该站点颁发的 id=XXX 的身份证（cookie），并在 Cookie 请求首部发送过去。</p>
+<h2 id="cookie-的类型"><a href="#cookie-的类型" class="headerlink" title="cookie 的类型"></a>cookie 的类型</h2><p>可以按照过期时间分为两类：会话 cookie 和持久 cookie。会话 cookie 是一种临时 cookie，用户退出浏览器，会话 Cookie 就会被删除了，持久 cookie 则会储存在硬盘里，保留时间更长，关闭浏览器，重启电脑，它依然存在，通常是持久性的 cookie 会维护某一个用户周期性访问服务器的配置文件或者登录信息。</p>
+<h2 id="token-是什么"><a href="#token-是什么" class="headerlink" title="token 是什么"></a>token 是什么</h2><p>Token 是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个 Token 便将此 Token 返回给客户端，以后客户端只需带上这个 Token 前来请求数据即可，无需再次带上用户名和密码。</p>
+<p>基于 Token 的身份验证 我们可以</p>
+<p>使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。流程是这样的：</p>
+<ol>
+<li>客户端使用用户名跟密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端</li>
+<li>客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里</li>
+<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 Token</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</li>
+<li>APP 登录的时候发送加密的用户名和密码到服务器，服务器验证用户名和密码，如果成功，以某种方式比如随机生成 32 位的字符串作为 token，存储到服务器中，并返回 token 到 APP，以后 APP 请求时，</li>
+<li>凡是需要验证的地方都要带上该 token，然后服务器端验证 token，成功返回所需要的结果，失败返回错误信息，让他重新登录。其中服务器上 token 设置一个有效期，每次 APP 请求的时候都验证 token 和有效期。</li>
+</ol>
+<h2 id="token-的优势"><a href="#token-的优势" class="headerlink" title="token 的优势"></a>token 的优势</h2><ol>
+<li> 无状态、可扩展</li>
+</ol>
+<p>在客户端存储的 Tokens 是无状态的，并且能够被扩展。基于这种无状态和不存储 Session 信息，负载负载均衡器能够将用户信息从一个服务传到其他服务器上。如果我们将已验证的用户的信息保存在 Session 中，则每次请求都需要用户向已验证的服务器发送验证信息(称为 Session 亲和性)。用户量大时，可能会造成 一些拥堵。但是不要着急。使用 tokens 之后这些问题都迎刃而解，因为 tokens 自己 hold 住了用户的验证信息。</p>
+<ol start="2">
+<li> 安全性</li>
+</ol>
+<p>请求中发送 token 而不再是发送 cookie 能够防止 CSRF(跨站请求伪造)。即使在客户端使用 cookie 存储 token，cookie 也仅仅是一个存储机制而不是用于认证。不将信息存储在 Session 中，让我们少了对 session 操作。token 是有时效的，一段时间之后用户需要重新验证。我们也不一定需要等到 token 自动失效，token 有撤回的操作，通过 token revocataion 可以使一个特定的 token 或是一组有相同认证的 token 无效。</p>
+<ol start="3">
+<li>可扩展性</li>
+</ol>
+<p>Tokens 能够创建与其它程序共享权限的程序。例如，能将一个随便的社交帐号和自己的大号(Fackbook 或是 Twitter)联系起来。当通过服务登录 Twitter(我们将这个过程 Buffer)时，我们可以将这些 Buffer 附到 Twitter 的数据流上(we are allowing Buffer to post to our Twitter stream)。使用 tokens 时，可以提供可选的权限给第三方应用程序。当用户想让另一个应用程序访问它们的数据，我们可以通过建立自己的 API，得出特殊权限的 tokens。</p>
+<ol start="4">
+<li>多平台跨域</li>
+</ol>
+<p>我们提前先来谈论一下 CORS(跨域资源共享)，对应用程序和服务进行扩展的时候，需要介入各种各种的设备和应用程序。Having our API just serve data, we can also make the design choice to serve assets from a CDN. This eliminates the issues that CORS brings up after we set a quick header configuration for our application.只要用户有一个通过了验证的 token，数据和资源就能够在任何域上被请求到。Access-Control-Allow-Origin: *</p>
+<ol start="5">
+<li>基于标准</li>
+</ol>
+<p>创建 token 的时候，你可以设定 sss 一些选项。我们在后续的文章中会进行更加详尽的描述，但是标准的用法会在 JSON Web Tokens 体现。最近的程序和文档是供给 JSON Web Tokens 的。它支持众多的语言。这意味在未来的使用中你可以真正的转换你的认证机制。</p>
+<h2 id="token-如何保证安全"><a href="#token-如何保证安全" class="headerlink" title="token 如何保证安全"></a>token 如何保证安全</h2><p>服务器端：不多说了，代码安全。<br>客户端：<br> ① 本地存储 token 对称加密</p>
+<pre><code>①Apk加固 防止被反编译，动态调试等等
+
+③传输安全采用https方式，且最好双向验证，如果没有你还不想被别人抓到看到原始数据，那就至少要做一下对称加密。如果你是Http方式一定记得至少要对称加密再传输数据。</code></pre>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>token 和 cookie 一样都是首次登陆时，由服务器下发，都是当交互时进行验证的功能，作用都是为无状态的 HTTP 提供的持久机制。</p>
+<p>token 存在哪儿都行，localstorage 或者 cookie。</p>
+<p>token 和 cookie 举例，token 就是说你告诉我你是谁就可以。</p>
+<p>cookie 举例：服务员看你的身份证，给你一个编号，以后，进行任何操作，都出示编号后服务员去看查你是谁。</p>
+<p>token 举例：直接给服务员看自己身份证。</p>
+<p>对于 token 而言，服务器不需要去查看你是谁，不需要保存你的会话。当用户 logout 的时候 cookie 和服务器的 session 都会注销；但是当 logout 时候 token 只是注销浏览器信息，不查库。</p>
+<p>token 优势在于，token 由于服务器端不存储会话，所以可扩展性强，token 还可用于 APP 中。</p>
+<p>Token 完全由应用管理，所以它可以避开同源策略。</p>
+<p>Token 可以避免 CSRF 攻击。</p>
+<p>Token 可以是无状态的，可以在多个服务间共享。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：了解cookies和token的优异</li>
+        <li>Post author：Keep team</li>
+        <li>Create time：2021-01-11 21:29:41</li>
+        <li>
+            Post link：https://keep.xpoet.cn/2021/01/11/三次握手四次挥手/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/12/30/ts-%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ts-严格模式</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center" >
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                    
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span> -
+            
+            2021 <i class="fas fa-heart icon-animate"></i> <a href="/">Keep team</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a> | Theme <a class="theme-version" target="_blank"></a>
+        </div>
+    </div>
+</footer>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+
+        
+
+        <!-- TOC aside toggle -->
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-top flex-center">
+            <i class="fas fa-arrow-up"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="tools-ul-1">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+    </ul>
+</div>
+
+    </div>
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3-cookies-%E5%92%8C-token-%E7%9A%84%E4%BC%98%E5%BC%82"><span class="nav-number">1.</span> <span class="nav-text">了解 cookies 和 token 的优异</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">cookie 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie-%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">cookie 的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#token-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.3.</span> <span class="nav-text">token 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#token-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.4.</span> <span class="nav-text">token 的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#token-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8"><span class="nav-number">1.5.</span> <span class="nav-text">token 如何保证安全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol>
+    </div>
+</div>
+        
+    </aside>
+
+    <!-- image viewer -->
+    <div class="image-viewer-container">
+    <div class="img-box">
+        <img src="">
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/left-side-toggle.js"></script>
+
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/code-copy.js"></script>
+    
+
+    
+
+
+</body>
+</html>
