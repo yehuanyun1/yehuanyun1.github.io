@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <title>
-        history模式,页面返回404,如何解决? |
+        vue生命周期 |
         
         Keep
     </title>
@@ -101,7 +101,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">history模式,页面返回404,如何解决?</span>
+            <span class="title-hover-animation">vue生命周期</span>
         </div>
 
         
@@ -117,7 +117,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-calendar"></i> 2021-01-28 22:52:37
+        <i class="fas fa-calendar"></i> 2021-01-29 22:44:38
     </span>
     
     
@@ -134,29 +134,28 @@
         
 
         <div class="article-content markdown-body">
-            <p>vue-router 默认是 hash 模式，使用 url 的 hash 来模拟一个完整的 url，当 url 改变的时候，页面不会重新加载。但是如果我们不想 hash 这种以#号结尾的路径时候的话，我们可以使用路由的 history 的模式。比如如下网址：使用 hash 模式的话，那么访问变成 <a class="link"   target="_blank" rel="noopener" href="http://localhost:8080/bank/page/count/#/" >http://localhost:8080/bank/page/count/#/<i class="fas fa-external-link-alt"></i></a> 这样的访问，如果路由使用 history 的话，那么访问的路径变成 如下：<a class="link"   target="_blank" rel="noopener" href="http://localhost:8080/bank/page/count" >http://localhost:8080/bank/page/count<i class="fas fa-external-link-alt"></i></a> 这样的了；</p>
-<p>不过 history 的这种模式需要后台配置支持。比如：当我们进行项目的主页的时候，一切正常，可以访问，但是当我们刷新页面或者直接访问路径的时候就会返回 404，那是因为在 history 模式下，只是动态的通过 js 操作 window.history 来改变浏览器地址栏里的路径，并没有发起 http 请求，但是当我直接在浏览器里输入这个地址的时候，就一定要对服务器发起 http 请求，但是这个目标在服务器上又不存在，所以会返回 404</p>
-<p>怎么解决呢？我们现在可以把所有请求都转发到 <a class="link"   target="_blank" rel="noopener" href="http://localhost:8080/bank/page/index.html" >http://localhost:8080/bank/page/index.html<i class="fas fa-external-link-alt"></i></a> 上就可以了。</p>
-<h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>对于 VUE 的 router[mode: history]模式在开发的时候，一般都不出问题。是因为开发时用的服务器为 node，Dev 环境中自然已配置好了。</p>
-<p>但对于放到 nginx 下运行的时候，自然还会有其他注意的地方。总结如下：</p>
-<p>在 nginx 里配置了以下配置后， 可能首页没有问题，但链接其他会出现（404）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">root D:\Test\exprice\dist;</span><br><span class="line">index index.html index.htm;</span><br><span class="line">try_files $uri $uri/ /index.html;</span><br><span class="line">add_header <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span> <span class="string">&#x27;\*&#x27;</span>;</span><br><span class="line">add_header <span class="string">&#x27;Access-Control-Allow-Credentials&#x27;</span> <span class="string">&#x27;true&#x27;</span>;</span><br><span class="line">add_header <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span> <span class="string">&#x27;GET, POST, OPTIONS&#x27;</span>;</span><br><span class="line">add_header <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span> <span class="string">&#x27;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ^~<span class="regexp">/api/</span> &#123;</span><br><span class="line">            proxy_pass   http:<span class="comment">//39.105.109.245:8080/;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>为了解决 404，需要通过以下两种方式：</p>
-<p>1、官网推荐</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">　　 root D:\Test\exprice\dist;</span><br><span class="line">　　 index index.html index.htm;</span><br><span class="line">　　 try_files $uri $uri/ /index.html;</span><br></pre></td></tr></table></figure>
-<p>2、匹配 errpr_page</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /&#123;</span><br><span class="line">　　 root /data/nginx/html;</span><br><span class="line">　　 index index.html index.htm;</span><br><span class="line">　　 error_page <span class="number">404</span> /index.html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            <h2 id="什么是生命周期"><a href="#什么是生命周期" class="headerlink" title="什么是生命周期"></a>什么是生命周期</h2><p>用官方的话来讲，Vue 实例从创建到销毁的过程，就是生命周期。也就是从开始创建、初始化数据、编译模板、挂载 Dom→ 渲染、更新 → 渲染、卸载等一系列过程，我们称之为 Vue 的生命周期。<br>通俗来讲，当加载一个页面的时候，会创建一个 vue 实例来展示这个页面。</p>
+<h1 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h1><h2 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate"></a>beforeCreate</h2><p>最先开始的是创建，也就是 「beforeCreate」 ，这个阶段，实例初步被创建，还没有初始化，就是一个具备基本模板，没有任何数据和事件的光杆司令，</p>
+<h2 id="created"><a href="#created" class="headerlink" title="created"></a>created</h2><p>然后进入到「created」阶段，这时候实例创建完成，并且立刻调用这个钩子里的函数，这时候数据观测 (data observer)，watch/event 事件回调 的属性和方法配置完成，页面元素还没初始化，</p>
+<h2 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount"></a>beforeMount</h2><p>接下来准备开始挂载 dom 节点，以供操作，在挂载之前 「beforeMount」 阶段，这时候相关的 render 函数首次被调用，并且完成页面元素和数据的初始化，</p>
+<h2 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h2><p>然后「mounted」阶段，这时候属性有了，方法有了，页面元素有了，数据也有了，所以这个阶段会对 DOM 节点进行操作，进行挂载完毕，并且挂载完毕后调用钩子里的函数，所以大多数的函数放在这里面，因为这里了开始可以对 dom 进行操作</p>
+<p>第二阶段</p>
+<h2 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate"></a>beforeUpdate</h2><p>第一阶段数据渲染完毕，页面展现完毕，这时候想要进行数据交互，这时的第一阶段是 「beforeUpdate」 ，它发生在数据更新的调用时候，DOM 还没有重新渲染之前，这时候可以进一步更改状态，而且不会触发重新渲染的过程</p>
+<h2 id="updated"><a href="#updated" class="headerlink" title="updated"></a>updated</h2><p>这个阶段 DOM 以及重新渲染，可以行使操作新 dom 的的行为，但是应该避免出现这种行为，很可能会导致更新无线循环</p>
+<h2 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="beforeDestroy"></a>beforeDestroy</h2><p>到了这个阶段，上一阶段的行为最好放在这里使用，这是实例销毁之前的最后完整保留</p>
+<h2 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h2><p>这个阶段实例被销毁，实例相关的一切消失，</p>
+
         </div>
 
         
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：history模式,页面返回404,如何解决?</li>
+        <li>Post title：vue生命周期</li>
         <li>Post author：Keep team</li>
-        <li>Create time：2021-01-28 22:52:37</li>
+        <li>Create time：2021-01-29 22:44:38</li>
         <li>
-            Post link：https://keep.xpoet.cn/2021/01/28/history模式-页面返回404-如何解决/
+            Post link：https://keep.xpoet.cn/2021/01/29/vue生命周期/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -173,13 +172,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/01/29/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
+                           href="/2021/01/29/vue%E6%8F%92%E6%A7%BD/"
                         >
                             <span class="left arrow-icon flex-center" >
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">vue生命周期</span>
+                                <span class="post-nav-title-item">vue插槽</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -189,10 +188,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/01/26/CSS%E9%80%89%E6%8B%A9%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B/"
+                           href="/2021/01/28/history%E6%A8%A1%E5%BC%8F-%E9%A1%B5%E9%9D%A2%E8%BF%94%E5%9B%9E404-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">CSS选择器有哪些</span>
+                                <span class="post-nav-title-item">history模式,页面返回404,如何解决?</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center" >
@@ -297,7 +296,7 @@
         
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">解决方案：</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5"><span class="nav-number"></span> <span class="nav-text">第一阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#beforeCreate"><span class="nav-number">1.</span> <span class="nav-text">beforeCreate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#created"><span class="nav-number">2.</span> <span class="nav-text">created</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beforeMount"><span class="nav-number">3.</span> <span class="nav-text">beforeMount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mounted"><span class="nav-number">4.</span> <span class="nav-text">mounted</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beforeUpdate"><span class="nav-number">5.</span> <span class="nav-text">beforeUpdate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#updated"><span class="nav-number">6.</span> <span class="nav-text">updated</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beforeDestroy"><span class="nav-number">7.</span> <span class="nav-text">beforeDestroy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#destroyed"><span class="nav-number">8.</span> <span class="nav-text">destroyed</span></a></li></ol>
     </div>
 </div>
         
